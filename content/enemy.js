@@ -9,7 +9,7 @@ export default class enemy{
         this.height = 30;
 
         this.speed = 1;
-        
+        this.hp = 10;
         this.image = new Image();
         this.image.src = "img/test.png";
 
@@ -35,6 +35,7 @@ export default class enemy{
                 this.y = Math.random() * canvas.height;
                 break;
         }
+        
     }
 
      update() {
