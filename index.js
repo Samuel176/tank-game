@@ -27,6 +27,31 @@ function game(){
         enemy.update();
         enemy.draw(ctx);
     });
+
+    enemies.forEach((enemy, enemyIndex)  => {
+        if (enemy.collideWith(player)) {
+        console.log(enemies)
+        enemies.splice(enemyIndex, 1);  
+        }
+    });
+
+    enemies.forEach((enemy, enemyIndex) => {
+    player.shells.forEach((shell, shellIndex) => {
+            if (enemy.collideWith(shell)) {
+                enemies.splice(enemyIndex, 1);
+                player.shells.splice(shellIndex, 1);
+            }
+        });
+    player.machineGuns.forEach((bullet, bulletIndex)=> {
+        if(enemy.collideWith(bullet)){
+            enemy.hp -=1;
+            
+            if(enemy.hp <= 0){
+                enemies.splice(enemyIndex, 1);
+            }
+        }
+    })
+    });
     
 }
 
