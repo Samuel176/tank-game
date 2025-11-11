@@ -38,8 +38,9 @@ export default class player{
         this.shootCooldown = 900; // milliseconds
 
         this.machineGuns = [];
+        this.reload = 0;
         this.mGLastShotTime = 0;
-        this.mGShootCooldown = 50; // milliseconds
+        this.mGShootCooldown = 100; // milliseconds
 
 
         document.addEventListener('keydown',this.keydown);
@@ -88,12 +89,13 @@ export default class player{
         });
         this.machineGuns.forEach((bullet, index) => {
             bullet.draw(ctx);
+            
+            
             if (
                 bullet.x < 1 || bullet.x > this.canvas.width ||
                 bullet.y < 1 || bullet.y > this.canvas.height
             ) {
                 this.machineGuns.splice(index, 1);
-                console.log("working")
             }
         });
         
@@ -113,10 +115,28 @@ export default class player{
             const bulletX = this.x + Math.cos(this.angle) * barrelLength;
             const bulletY = this.y + Math.sin(this.angle) * barrelLength;
             
-        
+            
             this.machineGuns.push(new bullet(this.canvas, bulletX, bulletY , this.angle + acc(), 10, "black"));
         
             this.mGLastShotTime = now;
+            this.reload += 1;
+            
+            if(this.reload == 75){
+                let timer = 0;
+                console.log("100")
+                this.mGShootCooldown = 100000;
+                this.reload = 0;
+
+                let interval = setInterval(() => {
+                        timer += 1;
+                        if (timer === 5) {
+                            this.mGShootCooldown = 100;
+                            console.log("timer done");
+                            clearInterval(interval); 
+                        }
+                    }, 1000);
+                
+            }
         }
         function acc(){ 
             let x = Math.floor(Math.random()*8)
@@ -158,6 +178,7 @@ export default class player{
         }
 
     }
+
 
     move(){
         if (this.rightPressed){
@@ -230,6 +251,7 @@ export default class player{
         }
         if(event.code == "KeyR"){
             this.machineGunPressed = true;
+            this.mGShootCooldown -= 0.4;
             
         }
         
@@ -258,6 +280,7 @@ export default class player{
         }
         if(event.code == "KeyR"){
             this.machineGunPressed = false;
+            this.mGShootCooldown = 100;
             
         }
         

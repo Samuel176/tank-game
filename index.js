@@ -1,6 +1,5 @@
 import Player from "./content/player.js";
 import Enemy from "./content/enemy.js";
-import Shell from "./content/shell.js";
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 const velocity = 3;
@@ -44,10 +43,11 @@ function game(){
         });
     player.machineGuns.forEach((bullet, bulletIndex)=> {
         if(enemy.collideWith(bullet)){
-            enemy.hp -=1;
-            
+            enemy.hp -=2;
+            player.machineGuns.splice(bulletIndex, 1)  
             if(enemy.hp <= 0){
                 enemies.splice(enemyIndex, 1);
+                
             }
         }
     })
