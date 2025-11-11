@@ -9,4 +9,4 @@ A/D -> turn turret
 
 space -> shoot
 
-R -> secondary shoot
+S -> secondary shoot
