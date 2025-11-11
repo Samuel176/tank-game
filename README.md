@@ -1,5 +1,5 @@
 # tank-game
-js canvas based tank game personal project
+js canvas based tank game personal project, currently working on
  
 controls
 
