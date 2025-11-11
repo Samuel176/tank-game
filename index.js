@@ -39,6 +39,7 @@ function game(){
             if (enemy.collideWith(shell)) {
                 enemies.splice(enemyIndex, 1);
                 player.shells.splice(shellIndex, 1);
+               
             }
         });
     player.machineGuns.forEach((bullet, bulletIndex)=> {

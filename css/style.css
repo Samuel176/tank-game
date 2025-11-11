@@ -13,6 +13,11 @@ body {
   box-sizing: border-box;
 }
 
+.heading-secondary {
+  font-size: 2rem;
+  text-align: center;
+}
+
 #game {
   border: solid 1px black;
 }
@@ -30,6 +35,14 @@ body {
   background-repeat: no-repeat;
   height: 200px;
   width: 1000px;
+}
+.info__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.info__container-text {
+  font-size: 1.8rem;
 }
 
 /*# sourceMappingURL=style.css.map */
