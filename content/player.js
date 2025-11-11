@@ -249,7 +249,7 @@ export default class player{
             this.shootPressed = true;
             console.log("fire!")
         }
-        if(event.code == "KeyR"){
+        if(event.code == "KeyS"){
             this.machineGunPressed = true;
             this.mGShootCooldown -= 0.4;
             
@@ -278,7 +278,7 @@ export default class player{
         if(event.code == "Space"){
             this.shootPressed = false;
         }
-        if(event.code == "KeyR"){
+        if(event.code == "KeyS"){
             this.machineGunPressed = false;
             this.mGShootCooldown = 100;
             
