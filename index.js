@@ -11,6 +11,9 @@ canvas.height = 500;
 const player = new Player(canvas, velocity)
 const enemy = new Enemy(canvas, player)
 
+let isGameOver = false;
+let didWin = false;
+
 const enemies = [];
 
 function spawnEnemy() {
@@ -18,10 +21,21 @@ function spawnEnemy() {
 }
 setInterval(spawnEnemy, 2000);
 
+
+
 function game(){
+    displayGameOver();
     ctx.fillStyle = 'white';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    player.draw(ctx)
+
+
+    if(player.hp == 0){
+    console.log("dead")
+    isGameOver = true
+    }
+    if(!isGameOver){
+        player.draw(ctx)
+
     enemies.forEach(enemy => {
         enemy.update();
         enemy.draw(ctx);
@@ -29,8 +43,9 @@ function game(){
 
     enemies.forEach((enemy, enemyIndex)  => {
         if (enemy.collideWith(player)) {
-        console.log(enemies)
-        enemies.splice(enemyIndex, 1);  
+        player.hp--;
+        enemies.splice(enemyIndex, 1); 
+        console.log(player.hp)
         }
     });
 
@@ -53,7 +68,30 @@ function game(){
         }
     })
     });
+    }
     
+    
+}
+
+function displayGameOver(){
+   if(isGameOver){
+      let text = "Game Over"
+      let textOffSet =  5;
+      ctx.fillStyle = "black";
+      ctx.font = "70px Arial";
+      ctx.fillText(text, canvas.width / textOffSet, canvas.height /2.5)
+   }
+//    if(isGameOver){
+//       let text = "Press R To Continue"
+//       let textOffSet = 3.1
+//       ctx.fillStyle = "black";
+//       ctx.font = "22px Arial";
+//       ctx.fillText(text, canvas.width / textOffSet, canvas.height /1.5)
+//    }
+}
+
+function gameLost(){
+
 }
 
 setInterval(game, 1000/60);

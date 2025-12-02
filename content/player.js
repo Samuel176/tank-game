@@ -26,6 +26,8 @@ export default class player{
         this.image = new Image();
         this.image.src = "img/tank-frame.png";
 
+        this.hp = 10;
+
 
         this.turret = new Image()
         this.turret.src = "img/turret.png";
@@ -285,4 +287,5 @@ export default class player{
         }
         
     }
+
 }
